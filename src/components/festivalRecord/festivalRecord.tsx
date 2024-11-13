@@ -4,7 +4,7 @@ import { OutputRecord } from '../../types';
 const FestivalRecord: FC<OutputRecord> = ({ recordLabel, bands }) => {
   return (
     <div className="mb-6">
-      <h2 className="text-xl font-semibold text-blue-600">{recordLabel ?? 'undefined'}</h2>
+      <h2 className="text-xl font-semibold text-blue-600">{recordLabel}</h2>
       {
         bands.map(({ name, festivals }) => (
           <div key={name} className="ml-6 mt-2">

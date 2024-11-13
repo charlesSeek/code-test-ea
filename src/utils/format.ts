@@ -13,7 +13,7 @@ export const formatFestivalsData = (
   const bandsWithFestivals = festivals.flatMap((festival: Festival) =>
     festival.bands.map(band => ({
       ...band,
-      festivalName: festival.name,
+      festivalName: parseEmpty(festival.name),
     })));
 
   //group bands by recordLabel
@@ -22,15 +22,22 @@ export const formatFestivalsData = (
     const bandsData = _(bands)
       .groupBy('name')
       .map((bandInstances, bandName) => ({
-        name: bandName,
+        name: parseEmpty(bandName),
         festivals: _.orderBy(_.uniq(bandInstances.map(b => b.festivalName)), undefined, order)
       }))
       .orderBy([band => band.name.toLowerCase()], [order])
       .value();
     return {
-      recordLabel,
+      recordLabel: parseEmpty(recordLabel),
       bands: bandsData,
     };
   });
   return _.orderBy(result, [(item) => item.recordLabel.toLowerCase()], [order]);
+}
+
+export const parseEmpty = (data: string | undefined | null) => {
+  if (!data || !data.trim().length) {
+    return 'undefined'
+  }
+  return data;
 }
