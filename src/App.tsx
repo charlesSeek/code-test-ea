@@ -25,6 +25,9 @@ const App: FC = () => {
           throw new Error('API issue')
         }
         const result = await response.json();
+        if (!Array.isArray(result)) {
+          throw new Error('Invalid format of data');
+        }
         setRecords(result);
       } catch (err: unknown) {
         (err instanceof Error) ? setError(err.message) : setError(String(err));
