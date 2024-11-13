@@ -25,12 +25,12 @@ export const formatFestivalsData = (
         name: bandName,
         festivals: _.orderBy(_.uniq(bandInstances.map(b => b.festivalName)), undefined, order)
       }))
-      .orderBy('name', order)
+      .orderBy([band => band.name.toLowerCase()], [order])
       .value();
     return {
       recordLabel,
       bands: bandsData,
     };
   });
-  return _.orderBy(result, 'recordLabel', order);
+  return _.orderBy(result, [(item) => item.recordLabel.toLowerCase()], [order]);
 }
