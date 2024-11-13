@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from 'react';
-import axios from 'axios';
 import { OutputRecord, Order, Festival } from './types';
 import { formatFestivalsData } from './utils/format';
 import FestivalRecord from './components/festivalRecord/festivalRecord';
