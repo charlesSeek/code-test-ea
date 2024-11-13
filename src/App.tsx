@@ -26,7 +26,6 @@ const App: FC = () => {
           throw new Error('API issue')
         }
         const result = await response.json();
-        console.log('result:', result);
         setRecords(result);
       } catch (err: unknown) {
         (err instanceof Error) ? setError(err.message) : setError(String(err));
